@@ -2,7 +2,8 @@
   "name": "sgv-property-decorator",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "lib/vue-property-decorator.umd.js",
+  "module": "lib/vue-property-decorator.js",
   "scripts": {
     "build": "tsc -p ./src/tsconfig.json && rollup -c",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,8 +12,12 @@
     "type": "git",
     "url": "git+https://github.com/seanyujc/sgv-property-decorator.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "vue",
+    "typescript",
+    "decorator"
+  ],
+  "author": "seanyujc",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/seanyujc/sgv-property-decorator/issues"
@@ -21,6 +26,7 @@
   "devDependencies": {
     "@types/node": "^12.7.11",
     "reflect-metadata": "^0.1.13",
+    "rollup": "^1.23.1",
     "typescript": "^3.6.3",
     "vue": "^2.6.10"
   }
