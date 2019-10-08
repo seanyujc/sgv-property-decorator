@@ -5,3 +5,4 @@ export declare const singletonObjects: any[];
  * @param key 类的字段
  */
 export declare function Autowired(target: any, key: string): void;
+export declare function asyncData(params?: any): (target: any, propertyKey: string, descriptor: PropertyDescriptor) => void;

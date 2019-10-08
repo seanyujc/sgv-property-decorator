@@ -38,3 +38,13 @@ export function Autowired(target: any, key: string) {
     });
   }
 }
+
+export function asyncData(params?: any) {
+  return function(
+    target: any,
+    propertyKey: string,
+    descriptor: PropertyDescriptor,
+  ) {
+    console.log(target, propertyKey, descriptor);
+  };
+}
