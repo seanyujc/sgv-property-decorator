@@ -10,16 +10,19 @@ export const singletonObjects: any[] = [];
 export function Autowired(target: any, key: string) {
   const Type = Reflect.getMetadata("design:type", target, key);
   let n: any = null;
-  for (const o of singletonObjects) {
-    if (o instanceof Type) {
-      n = o;
-      break;
+  if (Type) {
+    for (const o of singletonObjects) {
+      if (o instanceof Type) {
+        n = o;
+        break;
+      }
+    }
+    if (n == null) {
+      n = new Type();
+      singletonObjects.push(n);
     }
   }
-  if (n == null) {
-    n = new Type();
-    singletonObjects.push(n);
-  }
+
   const getter = () => {
     if (n) {
       return n;
@@ -39,11 +42,30 @@ export function Autowired(target: any, key: string) {
   }
 }
 
+export function createSingletonObject(Type: any, ...args: any) {
+  let n: any = null;
+
+  if (Type) {
+    for (const o of singletonObjects) {
+      if (o instanceof Type) {
+        n = o;
+        break;
+      }
+    }
+
+    if (n == null) {
+      n = new Type(...args);
+      singletonObjects.push(n);
+    }
+  }
+  return n;
+}
+
 export function asyncData(params?: any) {
-  return function(
+  return function (
     target: any,
     propertyKey: string,
-    descriptor: PropertyDescriptor,
+    descriptor: PropertyDescriptor
   ) {
     console.log(target, propertyKey, descriptor);
   };
